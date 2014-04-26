@@ -1,6 +1,4 @@
-/* Parse.initialize("0UqzDuXvUOIME43yM6bY2O8MBL2K3o7CWtlGHF4C", "pWNEupugERZcsGBEGmTGmXKccCeJfanF0pNuylaa"); 
-
-});
+Parse.initialize("0UqzDuXvUOIME43yM6bY2O8MBL2K3o7CWtlGHF4C", "pWNEupugERZcsGBEGmTGmXKccCeJfanF0pNuylaa"); 
 var inUse;
 var userInformation = Parse.Object.extend("Chowdown");
 var inUse = new Object();
@@ -17,4 +15,4 @@ query.get(//userID, {
   error: function(object, error) {
     alert('Sorry, there was an error in retrieving the data. Please try again.');
   }
-});*/
+});
