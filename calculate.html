@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Chowdown</title>
+		<meta name="description" content="Chowdown app for Husky Card dining balance management">
+		<meta name="viewport" content="width=device-width">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="chowdown.css" type="text/css" rel="stylesheet" />
+		<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+	</head>
+
+	<body>
+		<h1>Chowdown</h1>	
+			<form action="" method="GET">
+				<div class="form-group">
+					<label>Surplus Money from Previous Quarters</label>
+					<input type="text" class="form-control input-lg" name="surplus" placeholder="ex: 105.00" pattern="[0-9]+\.[0-9]{2}" oninvalid="setCustomValidity('Please use the format 0.00')" onchange="try{setCustomValidity('')}catch(e){}" required/>
+				</div>
+				<div class="form-group">
+					<label>Dining Plan</label>
+					<select class="form-control input-lg" name="mealplan">
+						<option value="6">Level 6 - Largest</option>
+						<option value="5">Level 5</option>
+						<option value="4">Level 4</option>
+						<option value="3">Level 3</option>
+						<option value="2">Level 2</option>
+						<option value="1">Level 1 - Smallest</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Current Money on Card</label>
+					<input class="form-control input-lg" type="text" name="surplus" placeholder="ex: 543.72" pattern="[0-9]+\.[0-9]{2}" oninvalid="setCustomValidity('Please use the format 0.00')" onchange="try{setCustomValidity('')}catch(e){}" required/>
+				</div>
+				<div class="form-group">
+					<input class="btn btn-default btn-lg" type="submit" onclick="values(this.form)" value="Calculate"/>
+				</div>
+			</form>
+			<div>
+				<img src="spoon.png" />
+			</div>
+		
+		<script type="text/javascript">
+			Parse.initialize("APPLICATION_ID", "JAVASCRIPT_KEY");
+			
+			var TestObject = Parse.Object.extend("TestObject");
+			var testObject = new TestObject();
+				testObject.save({foo: "bar"}, {
+				success: function(object) {
+					$(".success").show();
+				},
+				error: function(model, error) {
+					$(".error").show();
+				}
+			});
+		</script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+
+</html>
