@@ -1,4 +1,4 @@
-/* Parse.initialize("0UqzDuXvUOIME43yM6bY2O8MBL2K3o7CWtlGHF4C", "pWNEupugERZcsGBEGmTGmXKccCeJfanF0pNuylaa"); 
+/* Parse.initialize("0UqzDuXvUOIME43yM6bY2O8MBL2K3o7CWtlGHF4C", "pWNEupugERZcsGBEGmTGmXKccCeJfanF0pNuylaa");
 
 });
 var inUse;
@@ -8,8 +8,10 @@ inUse.initialAmt;
 inUse.currentAmt;
 inUse.daysLeft;
 var query = new Parse.Query(userInformation);
-query.get(//userID, {
-  success: function(moneyDeets) {
+query.get(//userID,
+{
+  success: function(moneyDeets)
+{
     inUse.initialAmt = moneyDeets.get("initialAmt");
     inUse.currentAmt = moneyDeets.get("currentAmt");
     inUse.daysLeft = Math.abs(new Date() - moneyDeets.get("daysLeft"));
