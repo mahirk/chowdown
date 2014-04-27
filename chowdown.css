@@ -30,6 +30,7 @@ input, select, .btn {
 img {
 	display: block;
 	margin: 0 auto;
+<<<<<<< HEAD
 	margin-bottom: 20px;
 }
 
@@ -46,4 +47,7 @@ img {
 .btn-lg:hover, .btn-lg {
 	background-image: none;
 	padding-left: 16px;
+=======
+	margin-top: 20px;
+>>>>>>> 17c9b8eac4cbd10ab13433af2fb6c500c8dae50d
 }
