@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Chowdown</title>
+		<meta name="description" content="Chowdown web app for Husky Card dining balance management">
+		<meta name="viewport" content="width=device-width">
+		<script type="text/javascript" src="jquery-1.9.1.js"/></script>
+		<script type="text/javascript" src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"/></script>
+		<script type="text/javascript" src="jquery_min.js"/></script>
+		<script type="text/javascript" src="parse-1.2.18.min.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="chowdown.css" type="text/css" rel="stylesheet" />
+		<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+        <link href="fav.gif" rype="img/gif" rel="shortcut icon" />
+	</head>
+
+	<body>
+		   <div id="fb-root"></div>
+	<script>
+			(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/all.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	 Parse.initialize("0UqzDuXvUOIME43yM6bY2O8MBL2K3o7CWtlGHF4C", "pWNEupugERZcsGBEGmTGmXKccCeJfanF0pNuylaa");
+	  window.fbAsyncInit = function() {
+		Parse.FacebookUtils.init({
+			appId : '616312338458961', // Facebook App ID
+			channelUrl : 'http://students.washington.edu/mahirk/Chowdown/', // Channel File
+			cookie : true, // enable cookies to allow Parse to access the session
+			xfbml : true // parse XFBML
+		  });
+	  };
+		function login() {
+			Parse.FacebookUtils.logIn(null, {
+				success: function(user) {
+			if (!user.existed()) {
+				console.log('Welcome Back!');
+				FB.api('/me', function(response) {
+					console.log('Good to see you, ' + response.name + '.');
+					document.getElementById("currentState").innerHTML = "Logged In, " + response.name;
+				});
+
+			} else {
+				console.log('Welcome!');
+				FB.api('/me', function(response) {
+				  console.log('Good to see you, ' + response.name + ' Hope you enjoy this page, please fill in the form below.');
+					document.getElementById("currentState").innerHTML = "Welcome, " + response.name;
+				});
+			}
+			},
+				error: function(user, error) {
+					alert("User cancelled the Facebook login or did not fully authorize.");
+				}
+			});
+		  }
+		function status (){
+	  FB.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+	  console.log("WE ARE CONNECTED");
+	  FB.api('/me', function(response) {
+		console.log('Good to see you, ' + response.name + ' Hope you enjoy this page, please fill in the form below.');
+		document.getElementById("currentState").innerHTML = "Welcome, " + response.name;
+	  });
+  } else if (response.status === 'not_authorized') {
+	   document.getElementById("currentState").innerHTML = "Welcome, please authenticate us by clicking here."
+  }else {
+	console.log("Houston WE HAVE A PROBLEM");
+  }
+  });
+	  }
+		function putData(){
+			var user = Parse.User.current();
+			// Make a new post
+			var Post = Parse.Object.extend("MoneeyData");
+			var post = new Post();
+			post.set("surplusMoney", document.forms["calculate"]["surplus"].value);
+			post.set("currentMoney",  document.forms["calculate"]["current"].value);
+			post.set("diningLevel",  document.forms["calculate"]["mealplan"].value);
+			post.set("user", user);
+            post.set("hard", user.id);
+			post.save();
+		}
+  </script>
+		<h1>Chowdown</h1>
+        <img src="spoon.png" />
+		<button class="btn btn-default" onclick="login()" id="currentState">Login</button><br/>
+			<form name="calculate"  action="interim.html" method="none">
+				<div class="form-group">
+					<label>Surplus Money from Previous Quarters</label>
+					<input type="text" class="form-control input-lg" name="surplus" placeholder="ex: 105.00" pattern="[0-9]+\.[0-9]{2}" oninvalid="setCustomValidity('Please use the format 0.00')" onchange="try{setCustomValidity('')}catch(e){}" required/>
+				</div>
+				<div class="form-group">
+					<label>Dining Plan</label>
+					<select class="form-control input-lg" name="mealplan" >
+						<option value="6">Level 6 - Largest</option>
+						<option value="5">Level 5</option>
+						<option value="4">Level 4</option>
+						<option value="3">Level 3</option>
+						<option value="2">Level 2</option>
+						<option value="1">Level 1 - Smallest</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Current Money on Card</label>
+					<input class="form-control input-lg" type="text" name="current" placeholder="ex: 543.72" pattern="[0-9]+\.[0-9]{2}" oninvalid="setCustomValidity('Please use the format 0.00')" onchange="try{setCustomValidity('')}catch(e){}" required/>
+				</div>
+				<div class="form-group">
+					<input class="btn btn-default btn-lg" type="submit" value="Calculate"/>
+				</div>
+			</form>
+	</body>
+
+</html>

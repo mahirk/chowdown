@@ -30,5 +30,20 @@ input, select, .btn {
 img {
 	display: block;
 	margin: 0 auto;
-	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.btn, .btn:hover {
+	background: url('backgound.png');
+	background-image: url('fblogo.png');
+	background-repeat: no-repeat;
+	background-position: 3px;
+	color: white;
+	padding-left: 27px;
+	font-size: 18pt;
+}
+
+.btn-lg:hover, .btn-lg {
+	background-image: none;
+	padding-left: 16px;
 }

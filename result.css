@@ -1,0 +1,28 @@
+body {
+	background: url('background.png');
+	background-repeat: repeat;
+	color: white;
+	font-family: 'Muli', 'Century Gothic', 'sans-serif';
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 40pt;
+	text-align: center;
+}
+
+p {
+	font-size: 18pt;
+	text-align: center;
+}
+
+
+img {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+
+hr {
+	width: 30%;
+}
